@@ -21,6 +21,7 @@ duree_saison="10"
 auto_simu="0"
 chronon = "10"
 time_sleep = "0.5"
+# FIN initialisation en dur
 
 # Ouvrir un fichier en mode lecture
 with open('monde.ini', 'r') as f:

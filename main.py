@@ -32,7 +32,8 @@ time_sleep = int(initialisation.time_sleep)
 
 
 
-
+# la fonction simulation permet de lancer une simulation
+# cette fonction permet d'être appelé plusieurs fois dans le cas où on veut simuler en automatique des miliers de simulations
 def simulation(auto_simu, monde):
     # génération des algues (initialisation)
     for i in range(nb_algue):
@@ -50,13 +51,18 @@ def simulation(auto_simu, monde):
         nouveau_poisson = Poisson(monde.newID(), temps_reproduction_poisson, energie_poisson, monde.initialisation_position_animal())
         monde.ajout_animal(nouveau_poisson, nouveau_poisson.position)
 
+
+    # affichage de l'initialisation du monde (seulement en print)
     if auto_simu == 0:
         os.system("clear")
         print(monde, "init")
+
     etat_du_monde = [] # permet de sauvegarder l'état du monde à chaque chronon
-    tour = 0
+    tour = 0 # compte les tours de simulation jusqu'au nombre en paramètre (chronon)
     while tour < chronon and monde.nb_animal("P") > 0 and monde.nb_animal("R"):
         tour += 1
+
+        # gestion de la version automatique
         if auto_simu == 0:
             time.sleep(time_sleep)
             os.system("clear")
@@ -110,7 +116,8 @@ def simulation(auto_simu, monde):
                 indice_animal += 1
 
         if auto_simu == 0:
-            # print(monde)
+            # cas d'une seule simulation : on affiche
+            # print(monde) # code mis en commentaire pour ne plus afficher le monde dans la console
             print(tour, "/", chronon)
             print("nombre de poissons :", monde.nb_animal('P'))
             print("nombre de requins :", monde.nb_animal('R'))

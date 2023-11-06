@@ -32,7 +32,7 @@ saison_automne_img = pygame.image.load("images/images/saison_automne.png")
 saison_hiver_img = pygame.image.load("images/images/saison_hiver.png")
 saison_printemps_img = pygame.image.load("images/images/saison_printemps.png")
 
-def execution (monde):
+def execution (monde: object):
 
     # gestion du jour et de la nuit
     if monde.jour_nuit == 1:
@@ -58,6 +58,8 @@ def execution (monde):
         rocher_img = nuit_rocher_img
         eau_img = nuit_eau_img
 
+
+    # affichage des animaux et des obstacles
     y_image = 0
     for ligne in monde.tableau_monde:
         x_image= 0
@@ -96,6 +98,7 @@ def execution (monde):
     fenetre.blit(saison_img, (monde.saison_pos_x, monde.saison_pos_y))
     pygame.display.flip()
     
+    # on gère l'action de la croix pour arrêter la simulation
     continuer = True
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -103,6 +106,8 @@ def execution (monde):
     return continuer
 
 def execution_finale():
+    # fonction permettant d'afficher la simulation finie
+    # nouveau clic sur la croix pour fermer l'écran et arrêter le programme
     continuer = True
     while continuer:
         for event in pygame.event.get():
